@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
+import java.util.Locale;
 
 import id.ac.polinema.dtsfit.adapters.CaloriesAdapter;
 import id.ac.polinema.dtsfit.fragments.CaloryFragment;
@@ -106,6 +107,11 @@ public class MainActivity extends AppCompatActivity implements
 				adapter.setCalories(calories);
 
 				// Tambahkan logic di baris ini untuk mengkalkulasi total calory
+                int total = 0;
+                for (Calory calory : calories){
+                    total += calory.getCalory();
+                }
+                caloryText.setText(String.format(Locale.ENGLISH,"Your Calory %d cal", total));
 			}
 
 			@Override
