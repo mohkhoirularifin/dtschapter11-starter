@@ -5,6 +5,7 @@ import java.util.List;
 import id.ac.polinema.dtsfit.models.Calory;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -23,4 +24,8 @@ public interface CaloryService {
     // TODO: Definisikan service editCalory()
     @PUT("/mohkhoirularifin/dts-fit/calories/{id}")
     Call<Calory> editCalory(@Path("id") int id, @Body Calory calory);
+
+    // TODO: Definisikan service deleteCalory()
+    @DELETE("/mohkhoirularifin/dts-fit/calories/{id}")
+    Call<Calory> deleteCalory(@Path("id") int id, @Body Calory calory);
 }
