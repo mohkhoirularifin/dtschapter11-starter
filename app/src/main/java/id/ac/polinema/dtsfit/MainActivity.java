@@ -130,5 +130,20 @@ public class MainActivity extends AppCompatActivity implements
 	@Override
 	public void onSaveMenuClicked(final View view, Calory calory) {
 		// TODO: Implementasikan aksi ketika menu simpan ditekan pada SaveCaloryFragment
+		Call<Calory> caloryCall = (calory.getId() == null)
+				? caloryService.addCalory(calory)
+				: caloryService.editCalory(calory.getId(), calory);
+		caloryCall.enqueue(new Callback<Calory>() {
+			@Override
+			public void onResponse(Call<Calory> call, Response<Calory> response) {
+				Snackbar.make(view, "Save successfull", Snackbar.LENGTH_SHORT).show();
+				changeFragment(CaloryFragment.newInstance());
+			}
+
+			@Override
+			public void onFailure(Call<Calory> call, Throwable t) {
+				Snackbar.make(view, "Error has occured!", Snackbar.LENGTH_SHORT).show();
+			}
+		});
 	}
 }
